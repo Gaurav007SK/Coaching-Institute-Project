@@ -4,6 +4,8 @@ const cors = require('cors');
 const morgan = require('morgan');
 require('dotenv').config();
 
+const authRouter = require('./routes/authRouter');
+
 const app = express();
 
 // Middleware
@@ -17,7 +19,7 @@ const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/coaching-institute';
 
 // Basic route for testing
-app.get('/', (req, res) => {
+app.get('/home', (req, res) => {
   res.json({ 
     message: 'Welcome to Coaching Institute API',
     status: 'Server is running',
@@ -33,6 +35,8 @@ app.get('/health', (req, res) => {
     timestamp: new Date().toISOString()
   });
 });
+
+app.use(authRouter);
 
 // 404 handler - using standard catch-all approach
 app.use((req, res) => {
