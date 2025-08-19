@@ -38,6 +38,7 @@ app.get('/health', (req, res) => {
 });
 
 app.use(authRouter);
+app.use('/admin', authMiddleware, authorizeRoles('admin'), require('./routes/adminRouter'));
 
 app.get('/teacher',authMiddleware, authorizeRoles('teacher','student'), (req, res) => {
   res.send('Welcome to the Coaching Institute API');

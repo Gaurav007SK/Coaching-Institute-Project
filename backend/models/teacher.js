@@ -33,11 +33,11 @@ const teacherSchema = new mongoose.Schema({
         required: true,
         min: 0
     },
-    qualifications: [{
+    highesQualification: {
         type: String,
         required: true,
         trim: true
-    }],
+    },
     joiningDate: {
         type: Date,
         required: true,
