@@ -5,6 +5,7 @@ const morgan = require('morgan');
 require('dotenv').config();
 
 const authRouter = require('./routes/authRouter');
+const { authMiddleware, authorizeRoles } = require('./middleware/auth');
 
 const app = express();
 
@@ -37,6 +38,10 @@ app.get('/health', (req, res) => {
 });
 
 app.use(authRouter);
+
+app.get('/teacher',authMiddleware, authorizeRoles('teacher','student'), (req, res) => {
+  res.send('Welcome to the Coaching Institute API');
+});
 
 // 404 handler - using standard catch-all approach
 app.use((req, res) => {
