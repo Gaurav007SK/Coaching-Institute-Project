@@ -21,6 +21,7 @@ const parentSchema = new mongoose.Schema({
     phone: {
         type: String,
         required: true,
+        unique: true,
         trim: true
     },
     dateOfBirth: {
@@ -38,6 +39,12 @@ const parentSchema = new mongoose.Schema({
             ref: 'Student'
         }
     ],
+    relationWithChild: {
+        type: String,
+        required: true,
+        enum: ['father', 'mother', 'guardian'],
+        trim: true
+    },
     createdAt: {
         type: Date,
         default: Date.now

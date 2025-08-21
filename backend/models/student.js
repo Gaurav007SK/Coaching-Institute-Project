@@ -35,7 +35,7 @@ const studentSchema = new mongoose.Schema({
   parentId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Parent",
-    required: true,
+    // required: true,
   },
   batchId: {
     type: mongoose.Schema.Types.ObjectId,
